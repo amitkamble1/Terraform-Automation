@@ -15,11 +15,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(
+                checkout([
+                    $class: 'GitSCM',
                     branches: [[name: "*/${params.BRANCH}"]],
-                    extensions: [],
-                    userRemoteConfigs: [[url: 'https://github.com/ygminds73/Terraform-Automation.git']]
-                )
+                    userRemoteConfigs: [[url: 'https://github.com/ygminds73/Terraform-Automation.git']],
+                    extensions: []
+                ])
             }
         }
 
